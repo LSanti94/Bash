@@ -1,0 +1,104 @@
+Additional configuration information.
+
+The virtual machine's network configuration should look like this:
+
+A Hostname: station01.example.com
+B IP address: 192.168.4.1xx
+C Subnet mask: 255.255.255.0
+D Gateway 192.168.4.x
+E Name Service: 192.168.4.2xx
+F The default target need to be set to multi-user
+G Root password need to be change to password123
+
+1. Configuration SELinux
+Description: Linux must be running in Enforcing mode
+
+2. Configure this as your system's default repository.
+Description: YUM's repository source is ftp://SERVER_NAME.example.com/pub/repos/rhel7
+
+3. Adjust the size of the logical volume
+Description: Increase the logical volume root and its file system size by 500 MB. Make sure that the contents of the file system remain intact.
+
+4. Create a user account
+Description: Create the following user, group, and group membership:
+- A group named adminuser
+- A user named woody, which belongs to the adminuser, this group is the user's subordinate group
+- A user named buzz, belonging to the adminuser, is a subordinate group for the user.
+- A user named sid, which has no interactive shell in the system and is not a member of the adminuser group.
+- Users woody, buzz, and sid the password should be set to password321
+
+5. Configure a file /var/tmp/fstab permissions
+Description: Copy the file /etc/fstab to /var/tmp/fstab. Permissions for the configuration file /var/tmp/fstab
+
+- User woody can read and write access to /var/tmp/fstab
+- User buzz can not read, write, or execute access to /var/tmp/fstab
+
+6. Configure a cron task
+Description: The user woody must be configured with a scheduled task to execute the command every day at 14:23 local time.
+/bin/echo hiya
+
+7. Create a shared directory
+Description: Creates a shared directory /home/admins with the following 
+characteristics:
+- The group ownership of the /home/admins directory is adminuser
+- Members of the adminuser group have read, write, and execute permissions on the directory.
+- All other users do not have any privileges (root users can access all the files and directories on the system)
+- The files that are created in the /home/admins directory have their group ownership automatically set to belong to the adminuser group
+
+8. Upgrade the kernel
+Description: Upgrading the correct kernel from the repository ftp://SERVER_NAME.example.com/pub/repos/updates
+Requires the following:
+- When the system restarts after the kernel to upgrade as the default kernel
+- The original kernel to be retained, and can still start normally
+
+9. Bound to the external authentication service
+Description: The system SERVER_NAME.example.com provides an LDAP authentication service. Your system needs to be:
+- Bind to this service in accordance with the following requirements:
+- The base DN of the authentication server is: dc=example, dc=com.
+- Account information and authentication information are provided by LDAP.
+- When the configuration is done correctly, user ldapuser{1..5} should be able to log in to your system, without home directory
+- Use TLS encrypt connections
+- LDAP CA certificate: ftp://SERVER_NAME.example.com/pub/ca.crt
+- The password for user ldapuser{1..5} is password
+
+10. Configure NTP to configure your system
+Description: Let's serve as an NTP client for SERVER_NAME.example.com
+
+11. Configure a user account
+Description: Creates a user with a UID of 2000 and the user name is jack.
+
+12. Extend the swap partition
+Description: Increase SWAP partition by 300MB, boot automatically
+
+13. Find the file
+Description: Find files belonging to the user woody and copies them into the /user-files directory.
+
+14. Find a string
+Description: View all the lines in the /usr/share/dict/words file that contain the seismic keyword and write the found lines to the /root/file-list file.
+
+15. Create an archive
+Description: The /etc directory is packaged into a compressed package placed in /root/backup.tar.bz2.
+
+16. Create a logical volume
+Description: Create a logical volume named database, with the volume group named datastore.
+- The logical volume size is 160MB and the PE size of the group is 16M.
+- Requires automatic mount after reboot on /mnt/database
+- Mount the new logical volume using the UUID
+- File system of this partition need to be set as xfs
+
+17. Create a new partition
+Description: Create a new partition, and mounted using the label “my-ext”, the size of this new partition need to be 200MB. And mounted automatically on /data. The file system of this partition need to set as ext3.
+
+18. Mount user’s home directory
+Description: The server SERVER_NAME.example.com is exporting the user’s home directories for the ldap users. Mount the resources using nfs version 3 on /home/ldap on your station. The path of the resources on the server is SERVER_NAME.example.com:/home/ldap/ldapuser{1..5}
+
+19. Create another logical volume
+Description: Create a new partition, and mounted using the UUID, the size of this new partition is 20 LE (logical extend); named the logical volume “lv_services”.
+And mounted automatically on /share. Named the volume group “services”, and the size of the PE (phisical extend) is 16MB. The file system of this partition need to set as ext4.
+
+20. Set ACL
+Description: Create a directory named /restricted and set the following
+characteristics:
+- Do not change regular permissions on the directory
+- Member of the group adminuser can read and write on the directory.
+- User woody who is member of the adminuser group can not read nor write in the directory.

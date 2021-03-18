@@ -1,0 +1,10 @@
+Requisitos para la máquina virtual puede tener como mínimo 18 GB o más y todas las particiones 
+excepto la swap deben estar en ext4.
+/ 7 GB
+/tmp 2 GB
+/var 2 GB
+/var/log 2 GB
+/var/log/audit 2 GB
+/home 2 GB
+Swap  1 GB
+Añadimos un disco duro aparte de 2 GB llamado hardening 1-1 y creamos una snapshop.
