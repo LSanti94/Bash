@@ -1,5 +1,6 @@
 # Bash 
-¿Que es bash?
+
+#¿Que es bash?
 Es un interprete de ordenes en la cual se ejecuta en una ventana de texto en la cual escribimos ordenes o instrucciones por el usuario o  contenidas en un script mostrando un resultado.
 
 Son repositorios que se me van ocurriendo subir o aprendiendo día a día.
