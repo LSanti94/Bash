@@ -6,9 +6,6 @@ Es un interprete de ordenes en la cual se ejecuta en una ventana de texto en la 
 
 Estos son repositorios que se me van ocurriendo subir o aprendiendo día a día.
 
-# Contribuciones
-Cualquier contribución es bienvenida, simplemente forkeá este repo y haceme una PR.
-
 # Contenido de los repos
 
 Lo que tenemos en sistemas viene a ser backup en bash script, para automatizar lo que uno dese realizar en sus backups, explicados.
